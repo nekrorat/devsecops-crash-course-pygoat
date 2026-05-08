@@ -37,6 +37,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Ensure Docker daemon.json exists
+        run: |
+          sudo mkdir -p /etc/docker
+          echo '{}' | sudo tee /etc/docker/daemon.json
+
       - name: Set up docker
         uses: docker-practice/actions-setup-docker@v1
         with:
